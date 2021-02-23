@@ -10,7 +10,6 @@
 @media screen and (max-width: 767px) {
     .form__heading {
         max-width: 282px;
-        padding: 25px 22px;
         font-style: normal;
         font-size: 18px;
         line-height: 22px;
