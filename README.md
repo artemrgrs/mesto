@@ -11,4 +11,4 @@ HTML, CSS, Nested БЭМ, Flexbox, Grid LO, Aдаптивная верстка, 
  
 
 ## Ссылка на GitHub Pages
-
+https://artemrgrs.github.io/mesto/
