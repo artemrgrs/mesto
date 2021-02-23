@@ -3,8 +3,8 @@ let showPopupButton = document.querySelector('.profile__edit-button');
 let closePopupButton = document.querySelector('.popup__close');
 
 let formElement = document.querySelector('.form');
-let nameInput = document.querySelector('.form_field-name');
-let jobInput = document.querySelector('.form_field-occupation');
+let nameInput = document.querySelector('.form__field_data_name');
+let jobInput = document.querySelector('.form__field_data_occupation');
 
 
 function togglePopup() {
