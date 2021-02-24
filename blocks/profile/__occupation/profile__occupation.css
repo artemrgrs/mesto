@@ -16,11 +16,12 @@
  
 @media screen and (max-width: 767px) {
     .profile__occupation {
-        max-width: 282px;
+        max-width: 189px;
         padding: 0;
         padding-top: 14px;
         font-size: 14px;
         line-height: 17px;
         text-align: center;
+        display: inline-block;
     }
 }
