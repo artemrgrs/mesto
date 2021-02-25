@@ -10,6 +10,7 @@
     font-size: 14px;
     line-height: 17px;
     font-family: inherit;
+    padding-bottom: 13px;
 }
 
 .form__field:first-child {
