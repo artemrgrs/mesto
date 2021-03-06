@@ -30,17 +30,3 @@ showPopupButton.addEventListener('click', togglePopup);
 closePopupButton.addEventListener('click', togglePopup);
 
 formElement.addEventListener('submit', formSubmitHandler);
-
-
-let popupCard = document.querySelector('.popup_function_add-pic');
-let showPopupPicButton = document.querySelector('.profile__add-button');
-let closePopupPicButton = document.querySelector('.popup__close_function_add-pic');
-
-
-function togglePopupPic() {
-    popupCard.classList.toggle('popup_is-opened');
-        
-}
-
-showPopupPicButton.addEventListener('click', togglePopupPic);
-closePopupPicButton.addEventListener('click', togglePopupPic);
