@@ -35,7 +35,7 @@
             <p class="footer__copyright">&copy; 2021 Mesto Russia</p>
         </footer>
 
-        <div class="popup">
+        <div class="popup profile-popup">
             <div class="popup__container">
                 <button type="button" class="popup__close"></button>
                 <form class="form" name="profile-info">
@@ -49,10 +49,10 @@
             </div>
         </div>  
 
-        <div class="popup popup_function_add-pic">
+        <div class="popup card-popup">
             <div class="popup__container">
-                <button type="button" class="popup__close popup__close_place_add-pic"></button>
-                <form class="form form_data_pics" name="pic-card">
+                <button type="button" class="popup__close"></button>
+                <form class="form" name="pic-card">
                     <h2 class="form__heading">Новое место</h2>
                     <fieldset class="form__user-info">
                         <input type="text" class="form__field form__field_data_title" required name="title" value="" placeholder="Название">
@@ -63,9 +63,9 @@
             </div>
         </div>
 
-        <div class="popup popup_function_image">
+        <div class="popup image-popup">
             <div class="popup__container popup__container_function_image">
-                <button type="button" class="popup__close popup__close_place_show-pic"></button>
+                <button type="button" class="popup__close"></button>
                 <figure class="popup__figure">
                     <img class="popup__image" src="#" alt="Картинка пользователя">
                     <figcaption class="popup__caption"></figcaption>
