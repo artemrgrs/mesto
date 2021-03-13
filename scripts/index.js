@@ -56,14 +56,13 @@ const imageCaption = document.querySelector('.popup__caption');
 
 function togglePopup(popup) {
   popup.classList.toggle('popup_is-opened');
-  formCard.reset();
-  formElement.reset();
 }
 
 
 
 function toggleProfilePopup() {
   togglePopup(profilePopup);
+  formElement.reset();
 
     if (profilePopup.classList.contains('popup_is-opened')) {
         nameInput.value = profileName.textContent;
@@ -83,6 +82,7 @@ function formSubmitHandler (evt) {
 
 function togglePopupPic() {
   togglePopup(popupCard);
+  formCard.reset();
 }
 
 function createTaskDomNode (item) {
