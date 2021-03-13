@@ -96,13 +96,13 @@ function createTaskDomNode (item) {
 }
 
 function createCards(item) {
-  const card = initialCards.map(function(item) {
+  const cards = initialCards.map(function(item) {
     const newTask = createTaskDomNode(item);
     addTaskListeners(newTask);
     return newTask;
   });
   
-  elementsContainer.prepend(...card);
+  elementsContainer.prepend(...cards);
 }
 
 createCards();
