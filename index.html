@@ -38,11 +38,15 @@
         <div class="popup profile-popup">
             <div class="popup__container">
                 <button type="button" class="popup__close"></button>
-                <form class="form" name="profile-info">
+                <form class="form" name="profile-info" novalidate>
                     <h2 class="form__heading">Редактировать профиль</h2>
                     <fieldset class="form__user-info">
-                        <input type="text" class="form__field form__field_data_name" required name="name" value="name">
-                        <input type="text" class="form__field form__field_data_occupation" required name="occupation" value="occupation">
+                        <input id="name" type="text" class="form__field form__field_data_name"
+                         name="name" value="name" required minlength="2" maxlength="40">
+                         <span id="name-error" class="form__error"></span>
+                        <input id="occupation" type="text" class="form__field form__field_data_occupation"
+                         name="occupation" value="occupation" required minlength="2" maxlength="200">
+                         <span id="occupation-error" class="form__error">Вы пропустили это поле.</span>
                     </fieldset>
                     <button type="submit" class="form__save-button">Сохранить</button>
                 </form>
@@ -52,11 +56,15 @@
         <div class="popup card-popup">
             <div class="popup__container">
                 <button type="button" class="popup__close"></button>
-                <form class="form" name="pic-card">
+                <form class="form" name="pic-card" novalidate>
                     <h2 class="form__heading">Новое место</h2>
                     <fieldset class="form__user-info">
-                        <input type="text" class="form__field form__field_data_title" required name="title" value="" placeholder="Название">
-                        <input type="text" class="form__field form__field_data_link" required name="link" value="" placeholder="Ссылка на картинку">
+                        <input id="title" type="text" class="form__field form__field_data_title"
+                         name="title" value="" placeholder="Название" required minlength="2" maxlength="40">
+                        <span id="title-error" class="form__error">Вы пропустили это поле.</span>
+                        <input id="link" type="url" class="form__field form__field_data_link"
+                         name="link" value="" placeholder="Ссылка на картинку"  required>
+                        <span id="link-error" class="form__error">Вы пропустили это поле.</span>
                     </fieldset>
                     <button type="submit" class="form__save-button">Создать</button>
                 </form>
@@ -87,5 +95,6 @@
 
     </div>    
     <script src="scripts/index.js"></script>
+    <script src="scripts/validate2.js"></script>
 </body>
 </html>
