@@ -52,24 +52,41 @@ const popupImage = imagePopup.querySelector('.popup__image');
 const imagePopupCloseButton = imagePopup.querySelector('.popup__close');
 const imageCaption = document.querySelector('.popup__caption');
 
-function togglePopup(popup) {
-  popup.classList.toggle('popup_is-opened');
-  popup.addEventListener('click', (evt) => {
-    if (evt.target.classList.contains('popup')) {
-      togglePopup(popup);
-    }
-  });
-  document.addEventListener('keydown', (evt) => {
-    if (popup.classList.contains('popup_is-opened')) {
-      if (evt.key === 'Escape') {
-        togglePopup(popup);
-     }
+const savePicButton = document.querySelector('.form__save-button_place_card-popup');
+
+function openPopup(popup) {
+  popup.classList.add('popup_is-opened');
+  setPopupEventListener(popup);
+}
+
+function closePopup(popup) {
+  popup.classList.remove('popup_is-opened');
+  document.removeEventListener('keydown', (evt) => {
+    if (evt.key === 'Escape') {
+      closePopup(popup);
     }
   });
 }
 
-function toggleProfilePopup() {
-  togglePopup(profilePopup);
+function setPopupEventListener(popup) {
+  popup.addEventListener('click', (evt) => {
+    if (evt.target.classList.contains('popup')) {
+      closePopup(popup);
+    }
+  });
+
+  if (popup.classList.contains('popup_is-opened')) { 
+  document.addEventListener('keydown', (evt) => {
+      if (evt.key === 'Escape') {
+        closePopup(popup);
+        }
+    });
+  }
+}
+
+
+function openProfilePopup() {
+  openPopup(profilePopup);
   formElement.reset();
 
     if (profilePopup.classList.contains('popup_is-opened')) {
@@ -78,17 +95,36 @@ function toggleProfilePopup() {
     } 
 }
 
+function closeProfilePopup() {
+  closePopup(profilePopup);
+  
+}
+
+function openPopupPic() {
+  openPopup(popupCard);
+  formCard.reset();  
+  savePicButton.setAttribute('disabled', true);
+  savePicButton.classList.add('form__save-button_invalid');
+}
+
+function closePopupPic() {
+  closePopup(popupCard);
+}
+
+function openImagePopup() {
+  openPopup(imagePopup);
+}
+
+function closeImagePopup() {
+  closePopup(imagePopup);
+}
+
 function formSubmitHandler (evt) {
     evt.preventDefault(); 
 
     profileName.textContent = nameInput.value;
     profileOccupation.textContent = jobInput.value;
-    toggleProfilePopup();
-}
-
-function togglePopupPic() {
-  togglePopup(popupCard);
-  formCard.reset();
+    closeProfilePopup();
 }
 
 function createTaskDomNode (item) {
@@ -124,7 +160,7 @@ function formCardSubmitHandler(evt) {
       addTaskListeners(task);
 
       elementsContainer.prepend(task);
-      togglePopup(popupCard);
+      closePopupPic();      
 }
 
 function addTaskListeners(element) {
@@ -145,24 +181,19 @@ function addTaskListeners(element) {
       popupImage.src = evt.target.src;
       popupImage.alt = imagePopupText.textContent;
       imageCaption.textContent = imagePopupText.textContent;
-      toggleImagePopup();
+      openImagePopup();
     }
     
     imagePopupButton.addEventListener('click', addImagePopup);
 }
 
-function toggleImagePopup() {
-  togglePopup(imagePopup);
-}
-
-
-showPopupButton.addEventListener('click', toggleProfilePopup);
-closePopupButton.addEventListener('click', toggleProfilePopup);
+showPopupButton.addEventListener('click', openProfilePopup);
+closePopupButton.addEventListener('click', closeProfilePopup);
 
 formElement.addEventListener('submit', formSubmitHandler);
 
-showPopupPicButton.addEventListener('click', togglePopupPic);
-closePopupPicButton.addEventListener('click', togglePopupPic);
+showPopupPicButton.addEventListener('click', openPopupPic);
+closePopupPicButton.addEventListener('click', closePopupPic);
   
 formCard.addEventListener('submit', formCardSubmitHandler);
-imagePopupCloseButton.addEventListener('click', toggleImagePopup);
+imagePopupCloseButton.addEventListener('click', closeImagePopup);
