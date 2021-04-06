@@ -56,6 +56,29 @@ const savePicButton = document.querySelector('.form__save-button_place_card-popu
 
 const popups = document.querySelectorAll('.popup')
 
+const profileFormElement = document.forms.profile;
+const profileFormvalidator = new FormValidator({
+        formSelector: '.form',
+        inputSelector: '.form__field',
+        submitButtonSelector: '.form__save-button',
+        inactiveButtonClass: 'form__save-button_invalid',
+        inputErrorClass: 'form__field_type_error',
+        errorClass: 'form__error_visible'
+      }, profileFormElement);
+
+profileFormvalidator.enableValidation();
+
+const cardFormElement = document.forms.card;
+const cardFormvalidator = new FormValidator({
+        formSelector: '.form',
+        inputSelector: '.form__field',
+        submitButtonSelector: '.form__save-button',
+        inactiveButtonClass: 'form__save-button_invalid',
+        inputErrorClass: 'form__field_type_error',
+        errorClass: 'form__error_visible'
+      }, cardFormElement);
+      
+cardFormvalidator.enableValidation();
 
 function openPopup(popup) {
   popup.classList.add('popup_is-opened');
@@ -127,14 +150,9 @@ function formCardSubmitHandler(evt) {
       const card = new Card({ name: inputTitleValue, link: inputLinkValue }, '.template');
       const cardElement = card.generateCard();
       elementsContainer.prepend(cardElement);
-
+      addTaskListeners(cardElement);
       closePopupPic();      
 }
-
-showPopupButton.addEventListener('click', openProfilePopup);
-formElement.addEventListener('submit', formSubmitHandler);
-showPopupPicButton.addEventListener('click', openPopupPic);
-formCard.addEventListener('submit', formCardSubmitHandler);
 
 initialCards.forEach((item) => {
   const card = new Card(item, '.template');
@@ -157,26 +175,7 @@ function addTaskListeners(element) {
   imagePopupButton.addEventListener('click', addImagePopup);
 }
 
-const profileFormElement = document.forms.profile;
-const profileFormvalidator = new FormValidator({
-        formSelector: '.form',
-        inputSelector: '.form__field',
-        submitButtonSelector: '.form__save-button',
-        inactiveButtonClass: 'form__save-button_invalid',
-        inputErrorClass: 'form__field_type_error',
-        errorClass: 'form__error_visible'
-      }, profileFormElement);
-
-profileFormvalidator.enableValidation();
-
-const cardFormElement = document.forms.card;
-const cardFormvalidator = new FormValidator({
-        formSelector: '.form',
-        inputSelector: '.form__field',
-        submitButtonSelector: '.form__save-button',
-        inactiveButtonClass: 'form__save-button_invalid',
-        inputErrorClass: 'form__field_type_error',
-        errorClass: 'form__error_visible'
-      }, cardFormElement);
-      
-cardFormvalidator.enableValidation();
+showPopupButton.addEventListener('click', openProfilePopup);
+formElement.addEventListener('submit', formSubmitHandler);
+showPopupPicButton.addEventListener('click', openPopupPic);
+formCard.addEventListener('submit', formCardSubmitHandler);
