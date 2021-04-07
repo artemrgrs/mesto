@@ -67,6 +67,7 @@ const profileFormvalidator = new FormValidator({
       }, profileFormElement);
 
 profileFormvalidator.enableValidation();
+profileFormvalidator.disableSubmitButton();
 
 const cardFormElement = document.forms.card;
 const cardFormvalidator = new FormValidator({
@@ -79,6 +80,7 @@ const cardFormvalidator = new FormValidator({
       }, cardFormElement);
       
 cardFormvalidator.enableValidation();
+cardFormvalidator.disableSubmitButton();
 
 function openPopup(popup) {
   popup.classList.add('popup_is-opened');
@@ -122,8 +124,6 @@ function closeProfilePopup() {
 function openPopupPic() {
   openPopup(popupCard);
   formCard.reset();  
-  savePicButton.setAttribute('disabled', true);
-  savePicButton.classList.add('form__save-button_invalid');
 }
 
 function closePopupPic() {
@@ -150,7 +150,6 @@ function formCardSubmitHandler(evt) {
       const card = new Card({ name: inputTitleValue, link: inputLinkValue }, '.template');
       const cardElement = card.generateCard();
       elementsContainer.prepend(cardElement);
-      addTaskListeners(cardElement);
       closePopupPic();      
 }
 
@@ -158,21 +157,14 @@ initialCards.forEach((item) => {
   const card = new Card(item, '.template');
   const cardElement = card.generateCard();
   elementsContainer.prepend(cardElement);
-  addTaskListeners(cardElement);
   }); 
 
-function addTaskListeners(element) {
-  const imagePopupButton = element.querySelector('.element__image');
-  const imagePopupText = element.querySelector('.element__heading');
+export function addImagePopup(name, link) {
+  popupImage.src = link;
+  popupImage.alt = name;
+  imageCaption.textContent = name;
+  openImagePopup();
 
-  function addImagePopup (evt){
-    popupImage.src = evt.target.src;
-    popupImage.alt = imagePopupText.textContent;
-    imageCaption.textContent = imagePopupText.textContent;
-    openImagePopup();
-  }
-  
-  imagePopupButton.addEventListener('click', addImagePopup);
 }
 
 showPopupButton.addEventListener('click', openProfilePopup);
