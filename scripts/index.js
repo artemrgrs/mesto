@@ -57,7 +57,7 @@ const savePicButton = document.querySelector('.form__save-button_place_card-popu
 const popups = document.querySelectorAll('.popup')
 
 const profileFormElement = document.forms.profile;
-const profileFormvalidator = new FormValidator({
+const profileFormValidator = new FormValidator({
         formSelector: '.form',
         inputSelector: '.form__field',
         submitButtonSelector: '.form__save-button',
@@ -66,11 +66,11 @@ const profileFormvalidator = new FormValidator({
         errorClass: 'form__error_visible'
       }, profileFormElement);
 
-profileFormvalidator.enableValidation();
-profileFormvalidator.disableSubmitButton();
+profileFormValidator.enableValidation();
+
 
 const cardFormElement = document.forms.card;
-const cardFormvalidator = new FormValidator({
+const cardFormValidator = new FormValidator({
         formSelector: '.form',
         inputSelector: '.form__field',
         submitButtonSelector: '.form__save-button',
@@ -79,8 +79,8 @@ const cardFormvalidator = new FormValidator({
         errorClass: 'form__error_visible'
       }, cardFormElement);
       
-cardFormvalidator.enableValidation();
-cardFormvalidator.disableSubmitButton();
+cardFormValidator.enableValidation();
+
 
 function openPopup(popup) {
   popup.classList.add('popup_is-opened');
@@ -100,7 +100,7 @@ function closeByEscape(evt) {
 }
 
 popups.forEach((popup) => {
-    popup.addEventListener('click', (evt) => {
+    popup.addEventListener('mousedown', (evt) => {
         if (evt.target.classList.contains('popup_is-opened')) {
             closePopup(popup)
         }
@@ -123,7 +123,7 @@ function closeProfilePopup() {
 
 function openPopupPic() {
   openPopup(popupCard);
-  formCard.reset();  
+  formCard.reset();
 }
 
 function closePopupPic() {
