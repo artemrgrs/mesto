@@ -124,6 +124,7 @@ function closeProfilePopup() {
 function openPopupPic() {
   openPopup(popupCard);
   formCard.reset();
+  cardFormValidator.disableSubmitButton();
 }
 
 function closePopupPic() {
