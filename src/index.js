@@ -34,9 +34,8 @@ const initialCards = [
   }
 ];
 
-const showPopupButton = document.querySelector('.profile__edit-button');
+const showPopupProfileButton = document.querySelector('.profile__edit-button');
 const showPopupPicButton = document.querySelector('.profile__add-button');
-const elementsContainer = document.querySelector('.elements');
 const elementsContainerSelector = '.elements';
 const imagePopupSelector = '.image-popup';
 const profilePopup = document.querySelector('.profile-popup');
@@ -101,7 +100,7 @@ const cardPopupWithForm = new PopupWithForm({
       }
       );
     const cardElement = card.generateCard();
-    elementsContainer.prepend(cardElement);
+    cardList.addItem(cardElement);
   }
 });
 
@@ -123,7 +122,7 @@ showPopupPicButton.addEventListener('click', () => {
   cardPopupWithForm.open();
 });
 
-showPopupButton.addEventListener('click', () => {
+showPopupProfileButton.addEventListener('click', () => {
   const userData = userInfo.getUserInfo();
   nameInput.value = userData.name;
   occupationInput.value = userData.occupation;

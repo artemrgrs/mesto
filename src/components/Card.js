@@ -29,7 +29,7 @@ export class Card {
 
     _setEventListeners() {
       this._element.querySelector('.element__delete-button').addEventListener('click', () => {
-        this._closeCard()
+        this._removeCard()
       });
 
       this._element.querySelector('.element__button').addEventListener('click', () => {
@@ -37,15 +37,11 @@ export class Card {
       });
 
       this._elementImage.addEventListener('click', this._handleCardClick);
-      
-      // () => {
-      //   // addImagePopup(this._name, this._link);
-        
-      // });
     }
 
-    _closeCard() {
+    _removeCard() {
       this._element.remove();
+      this._element = null;
     }
     
     _likeCard() {
