@@ -25,6 +25,10 @@ export default class Api {
         .then(this._handleResponse);
     }
 
+    getAllNeededData() {
+        return Promise.all([this.getProfileInfo(), this.getInitialCards()]);
+      }
+
     setProfileInfo(user) {
         return fetch(`${this._url}/users/me`, {
             method: 'PATCH',

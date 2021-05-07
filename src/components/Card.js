@@ -8,11 +8,10 @@ export class Card {
       this._removeLike = removeLike;
       this._handleDeleteCard = handleDeleteCard;
       this._id = data._id;
-    
     }
 
-    checkOwner(data) {
-      if (data.owner._id !== this._ownerId) {
+    checkOwner(data, ownerId) {
+      if (data.owner._id !== ownerId) {
         this._element.querySelector('.element__delete-button').remove();
       }
     }

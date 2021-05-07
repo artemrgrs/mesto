@@ -1,13 +1,13 @@
-import './pages/index.css';
+import './index.css';
 
-import { Card } from './components/Card.js';
-import { FormValidator } from './components/FormValidator.js';
-import Section from './components/Section.js';
-import PopupWithForm from './components/PopupWithForm.js';
-import UserInfo from './components/UserInfo.js';
-import PopupWithImage from './components/PopupWithImage.js';
-import Api from './components/Api.js';
-import PopupWithConfirm from './components/PopupWithConfirm.js';
+import { Card } from '../components/Card.js';
+import { FormValidator } from '../components/FormValidator.js';
+import Section from '../components/Section.js';
+import PopupWithForm from '../components/PopupWithForm.js';
+import UserInfo from '../components/UserInfo.js';
+import PopupWithImage from '../components/PopupWithImage.js';
+import Api from '../components/Api.js';
+import PopupWithConfirm from '../components/PopupWithConfirm.js';
 
 
 const showPopupProfileButton = document.querySelector('.profile__edit-button');
@@ -19,6 +19,8 @@ const profilePopup = document.querySelector('.profile-popup');
 const nameInput = profilePopup.querySelector('.form__field_data_name');
 const occupationInput = profilePopup.querySelector('.form__field_data_occupation');
 const submitButtons = Array.from(document.querySelectorAll('.form__save-button'));
+
+let ownerId = null;
 
 const userInfo = new UserInfo({
   nameSelector: '.profile__name',
@@ -70,12 +72,7 @@ const api = new Api({
   }
 });
 
-const profile = api.getProfileInfo();
-profile.then((data) => {
-  userInfo.setUserInfo(data);
-  userInfo.setUserAvatar(data);
-})
-.catch((err) => console.log(err));
+
 
 const createCard = (item) => {
   const card = new Card(item, '.template', {
@@ -103,6 +100,7 @@ const createCard = (item) => {
           api.deleteCard(id)
           .then(() => {
             document.getElementById(data).remove();
+            popupConfirmDelete.close();
           })
           .catch((err) => console.log(err));
         }
@@ -114,14 +112,18 @@ const createCard = (item) => {
   return card;
 }
 
-const cards = api.getInitialCards();
-cards.then((data) => {
+api.getAllNeededData().then(argument => {
+  const [profileData, cardsData] = argument;
+  userInfo.setUserInfo(profileData);
+  userInfo.setUserAvatar(profileData);
+  ownerId = profileData._id;
+
   const cardList = new Section({
-    items: data,
+    items: cardsData,
     renderer: (item) => {
       const card = createCard(item);
       const cardElement = card.generateCard();
-      card.checkOwner(item);
+      card.checkOwner(item, ownerId);
       card.countLikes(item);
       cardList.addItem(cardElement);
     }
